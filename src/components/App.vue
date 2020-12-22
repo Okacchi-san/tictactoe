@@ -49,6 +49,10 @@ export default{
             2:'×'
           };
           alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
+        }else{
+          if(this.isDraw()){
+            alert('引き分けです。');
+          }
         }
       }
     },
@@ -102,6 +106,18 @@ export default{
         return false;
       }
       return true;
+    },
+    isDraw: function(){
+      let flag = true;
+      this.states.map(row => {
+        row.map(state => {
+          if(state === -1) {
+            flag = false;
+          }
+        })
+      })
+      console.log(flag);
+      return(flag);
     }
   },
   created() {
