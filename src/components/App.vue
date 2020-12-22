@@ -3,7 +3,7 @@
     <h1>Tic Toc Toe</h1>
       <table id ="table">
         <tr v-for="(row,rowsIndex) in states" v-bind:key="rowsIndex">
-          <td v-for="(state,colsIndex) in row" v-bind:key="colsIndex">
+          <td v-for="(state,colsIndex) in row" v-bind:key="colsIndex" v-on:click="onSelect(rowsIndex,colsIndex)">
             <div class="player-id-1" v-if="state === 1">○</div>
             <div class="player-id-2" v-if="state === 2">×</div>
           </td>
@@ -19,12 +19,27 @@ export default{
   data: function() {
     return {
       states: [
-        [2,2,2],
         [-1,-1,-1],
-        [1,1,1]
+        [-1,-1,-1],
+        [-1,-1,-1]
       ],
       playerID: 1
     }
+  },
+  methods: {
+    onSelect: function(rowsIndex, colsIndex) {
+      if(this.states[rowsIndex][colsIndex] != -1) {
+        alert('そのマスはすでに選択されています。');
+      } else {
+        let states = JSON.parse(JSON.stringify(this.states))
+        states[rowsIndex][colsIndex] = this.playerID;
+        this.states = states;
+        this.playerID = (this.playerID === 1) ? 2 : 1;
+      }
+    }
+  },
+  created() {
+    console.log(this.states)
   }
 };
 
@@ -47,7 +62,7 @@ export default{
     width: 80px;
     text-align: center;
     vertical-align: middle;
-    font-size: 75px;
+    font-size: 50px;
     cursor: pointer;
   }
 
