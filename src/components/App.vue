@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MyModal v-if="isDrawState">
+    <MyModal v-if="isDrawModal">
       {{ }}
     </MyModal>
     <h1>Tic Tac Toe</h1>
@@ -27,8 +27,7 @@ export default{
     return {
       states: [],
       playerID: 1,
-      modal: false,
-      isDrawState: false,
+      isDrawModal: false,
     }
   },
   methods: {
@@ -65,7 +64,7 @@ export default{
           alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
         }else{
           if(this.isDraw()){
-            this.isDrawState = true;
+            this.isDrawModal = true;
           }
         }
       }
