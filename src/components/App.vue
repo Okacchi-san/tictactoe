@@ -2,10 +2,11 @@
   <div>
     <h1>Tic Toc Toe</h1>
       <table id ="table">
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="(row,rowsIndex) in states" v-bind:key="rowsIndex">
+          <td v-for="(state,colsIndex) in row" v-bind:key="colsIndex">
+            <div id="player-id-1" v-if="state === 1">○</div>
+            <div id="player-id-2" v-if="state === 2">×</div>
+          </td>
         </tr>
       </table>
   </div>
@@ -16,9 +17,9 @@ export default{
   data: function() {
     return {
       states: [
+        [2,2,2],
         [-1,-1,-1],
-        [-1,-1,-1],
-        [-1,-1,-1]
+        [1,1,1]
       ],
       playerID: 1
     }
@@ -46,5 +47,13 @@ export default{
     vertical-align: middle;
     font-size: 75px;
     cursor: pointer;
+  }
+
+  #player-id-1 {
+    color: #f00;
+  }
+
+  #player-id-2 {
+    color: #00f;
   }
 </style>
