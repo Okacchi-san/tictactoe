@@ -4,11 +4,13 @@
       <table id ="table">
         <tr v-for="(row,rowsIndex) in states" v-bind:key="rowsIndex">
           <td v-for="(state,colsIndex) in row" v-bind:key="colsIndex">
-            <div id="player-id-1" v-if="state === 1">○</div>
-            <div id="player-id-2" v-if="state === 2">×</div>
+            <div class="player-id-1" v-if="state === 1">○</div>
+            <div class="player-id-2" v-if="state === 2">×</div>
           </td>
         </tr>
       </table>
+      <div class="player-id-1" id="player-comment" v-if="playerID === 1">「○ プレーヤーさん、マスを選択してください。」</div>
+      <div class="player-id-2" id="player-comment" v-if="playerID === 2">「× プレーヤーさん、マスを選択してください。」</div>
   </div>
 </template>
 
@@ -49,11 +51,16 @@ export default{
     cursor: pointer;
   }
 
-  #player-id-1 {
+  .player-id-1 {
     color: #f00;
   }
 
-  #player-id-2 {
+  .player-id-2 {
     color: #00f;
+  }
+
+  #player-comment {
+    margin: 20px 0 0 0;
+    text-align: center;
   }
 </style>
