@@ -18,15 +18,18 @@
 export default{
   data: function() {
     return {
-      states: [
-        [-1,-1,-1],
-        [-1,-1,-1],
-        [-1,-1,-1]
-      ],
+      states: [],
       playerID: 1
     }
   },
   methods: {
+    init: function(){
+      this.states = [
+        [-1,-1,-1],
+        [-1,-1,-1],
+        [-1,-1,-1]
+      ];
+    },
     onSelect: function(rowsIndex, colsIndex) {
       if(this.states[rowsIndex][colsIndex] != -1) {
         alert('そのマスはすでに選択されています。');
@@ -39,11 +42,7 @@ export default{
         let winnerId = this.getWinnerId();
 
         if(winnerId != -1) {
-          this.states=[
-           [-1,-1,-1],
-           [-1,-1,-1],
-           [-1,-1,-1]
-          ];
+          this.init();
           this.playerIds = {
             1:'○',
             2:'×'
@@ -122,6 +121,9 @@ export default{
   },
   created() {
     console.log(this.states)
+  },
+  mounted: function(){
+    this.init();
   }
 };
 
