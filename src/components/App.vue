@@ -35,7 +35,73 @@ export default{
         states[rowsIndex][colsIndex] = this.playerID;
         this.states = states;
         this.playerID = (this.playerID === 1) ? 2 : 1;
+
+        let winnerId = this.getWinnerId();
+
+        if(winnerId != -1) {
+          this.states=[
+           [-1,-1,-1],
+           [-1,-1,-1],
+           [-1,-1,-1]
+          ];
+          this.playerIds = {
+            1:'○',
+            2:'×'
+          };
+          alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
+        }
       }
+    },
+    getWinnerId: function() {
+      for(let i =0; i < 3; i++) {
+
+        let row = this.states[i];
+        if(this.isStatesFilled(row)) {
+          return row[0];
+        }
+
+        let col = [
+          this.states[0][i],
+          this.states[1][i],
+          this.states[2][i]
+        ];
+        if(this.isStatesFilled(col)) {
+          return col[0][i];
+        }
+      }
+
+      let skew1 = [
+        this.states[0][0],
+        this.states[1][1],
+        this.states[2][2]
+      ];
+      if(this.isStatesFilled(skew1)) {
+        return skew1[0][0];
+      }
+
+      let skew2 = [
+        this.states[0][2],
+        this.states[1][1],
+        this.states[2][0]
+      ];
+      if(this.isStatesFilled(skew2)) {
+        return skew2[0][2];
+      }
+
+      return -1;
+      
+    },
+    isStatesFilled: function(states) {
+      if(states[0] === -1) {
+        return false;
+      }
+      if(states[0] != states[1]) {
+        return false;
+      }
+      if(states[1] != states[2]) {
+        return false;
+      }
+      return true;
     }
   },
   created() {
