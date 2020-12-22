@@ -13,7 +13,16 @@
 
 <script>
 export default{
-
+  data: function() {
+    return {
+      states: [
+        [-1,-1,-1],
+        [-1,-1,-1],
+        [-1,-1,-1]
+      ],
+      playerID: 1
+    }
+  }
 };
 
 </script>
@@ -22,6 +31,7 @@ export default{
   h1 {
     text-align: center;
   }
+
   #table {
     margin: 0 auto;
     border-collapse: collapse;
