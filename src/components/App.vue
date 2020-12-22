@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1>Tic Toc Toe</h1>
+    <MyModal v-if="isStatesFilled">
+      {{ }}
+    </MyModal>
+    <h1>Tic Tac Toe</h1>
       <table id ="table">
         <tr v-for="(row,rowsIndex) in states" v-bind:key="rowsIndex">
           <td v-for="(state,colsIndex) in row" v-bind:key="colsIndex" v-on:click="onSelect(rowsIndex,colsIndex)">
@@ -15,14 +18,25 @@
 </template>
 
 <script>
+import MyModal from './MyModal.vue';
+
 export default{
+  components: { MyModal },
+
   data: function() {
     return {
       states: [],
-      playerID: 1
+      playerID: 1,
+      modal: false
     }
   },
   methods: {
+    openModal() {
+      this.modal = true
+    },
+    closeModal() {
+      this.modal = false
+    },
     init: function(){
       this.states = [
         [-1,-1,-1],
@@ -117,8 +131,16 @@ export default{
       })
       console.log(flag);
       return(flag);
+    },
+    isWin: function() {
+      let flag = false;
+      if(this.winnerId != -1) {
+        return true;
+      }
+      return(flag);
     }
   },
+
   created() {
     console.log(this.states)
   },
