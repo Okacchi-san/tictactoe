@@ -1,7 +1,9 @@
 <template>
   <div>
-    <MyModal v-if="isDrawModal">
-      {{ }}
+    <MyModal @close="closeModal" v-if="isDrawModal">
+      <template slot="footer">
+        <button @click="doSend">送信</button>
+      </template>
     </MyModal>
     <h1>Tic Tac Toe</h1>
       <table id ="table">
@@ -35,7 +37,11 @@ export default{
       this.modal = true
     },
     closeModal() {
-      this.modal = false
+      this.isDrawModal = false
+    },
+    doSend() {
+      this.closeModal()
+      
     },
     init: function(){
       this.states = [

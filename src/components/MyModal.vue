@@ -1,5 +1,8 @@
 <template>
   <transition name="modal" appear>
+    <!-- transitionタグで囲んだ範囲がトランジッションクラスとして機能する。 -->
+    <!-- name属性を追加すると任意のタグのみ指定できる -->
+    <!-- appear属性で初期描画時にもトランジッションを追加できる -->
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
         <div class="modal-content">
