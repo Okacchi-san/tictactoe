@@ -6,6 +6,12 @@
         <button @click="doClose">閉じる</button>
       </template>
     </MyModal>
+    <MyModal @close="closeModal" v-else-if="isWinModal">
+      <template slot="footer">
+        <p>{{ this.playerIds[winnerId] }}さんの勝ちです。おめでとうございます。!</p>
+        <button @click="doClose">閉じる</button>
+      </template>
+    </MyModal>
     
     <h1>Tic Tac Toe</h1>
       <table id ="table">
@@ -31,6 +37,7 @@ export default{
     return {
       states: [],
       playerID: 1,
+      isWinModal: false,
       isDrawModal: false,
     }
   },
@@ -39,6 +46,7 @@ export default{
       this.modal = true
     },
     closeModal() {
+      this.isWinModal = false,
       this.isDrawModal = false
     },
     doClose() {
@@ -68,9 +76,10 @@ export default{
             1:'○',
             2:'×'
           };
-          alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
+            this.isWinModal = true;
+          // alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
         }else{
-          if(this.isDraw()){
+          if(this.isDraw()){ //isDraw === trueの場合以下がを実行する
             this.isDrawModal = true;
           }
         }
