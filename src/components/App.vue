@@ -80,6 +80,7 @@ export default{
           // alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
         }else{
           if(this.isDraw()){ //isDraw === trueの場合以下がを実行する
+            this.init();
             this.isDrawModal = true;
           }
         }
