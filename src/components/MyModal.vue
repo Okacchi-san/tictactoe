@@ -10,6 +10,7 @@
         </div>
         <footer class="modal-footer">
           <slot name="footer">
+            <p>コメント</p>
             <button @click="$emit('close')">Close</button>
           </slot>
         </footer>

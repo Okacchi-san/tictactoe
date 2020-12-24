@@ -2,9 +2,11 @@
   <div>
     <MyModal @close="closeModal" v-if="isDrawModal">
       <template slot="footer">
-        <button @click="doSend">送信</button>
+        <p>引き分けです!</p>
+        <button @click="doClose">閉じる</button>
       </template>
     </MyModal>
+    
     <h1>Tic Tac Toe</h1>
       <table id ="table">
         <tr v-for="(row,rowsIndex) in states" v-bind:key="rowsIndex">
@@ -39,9 +41,8 @@ export default{
     closeModal() {
       this.isDrawModal = false
     },
-    doSend() {
+    doClose() {
       this.closeModal()
-      
     },
     init: function(){
       this.states = [
@@ -147,11 +148,14 @@ export default{
     }
   },
 
-  created() {
-    console.log(this.states)
-  },
+  // created() {
+  //   console.log(this.states)
+  // },
   mounted: function(){
     this.init();
+  },
+  updated: function(){
+    console.log(this.states)
   }
 };
 
