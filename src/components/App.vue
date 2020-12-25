@@ -67,14 +67,13 @@ export default{
       } else {
         let states = JSON.parse(JSON.stringify(this.states))
         states[rowsIndex][colsIndex] = this.playerID;
-        // console.log(typeof(this.playerID)) number
         
         this.states = states;
         
         this.playerID = (this.playerID === 1) ? 2 : 1;
 
         let winnerId = this.getWinnerId();
-        console.log(winnerId)
+        
         if(winnerId != -1) {
           
           this.playerIds = {
@@ -115,7 +114,6 @@ export default{
         this.states[1][1],
         this.states[2][2]
       ];
-      console.log(skew1[0])
       if(this.isStatesFilled(skew1)) {
         // bug fix: skew1[0][0]をskew1[0]へ。
         return skew1[0];
