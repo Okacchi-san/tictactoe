@@ -48,6 +48,7 @@ export default{
     closeModal() {
       this.isWinModal = false,
       this.isDrawModal = false
+      
     },
     doClose() {
       this.closeModal()
@@ -65,11 +66,14 @@ export default{
       } else {
         let states = JSON.parse(JSON.stringify(this.states))
         states[rowsIndex][colsIndex] = this.playerID;
+        // console.log(typeof(this.playerID)) number
+        
         this.states = states;
+        
         this.playerID = (this.playerID === 1) ? 2 : 1;
 
         let winnerId = this.getWinnerId();
-        // console.log(winnerId)
+        console.log(winnerId)
         if(winnerId != -1) {
           
           this.playerIds = {
@@ -78,15 +82,16 @@ export default{
           };
           // this.init();
             this.isWinModal = true;
-            console.log(winnerId)
+            // console.log(winnerId)
             
           // alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
         }else{
           if(this.isDraw()){ //isDraw === trueの場合以下がを実行する
-            this.init();
+            // this.init();
             this.isDrawModal = true;
           }
         }
+        
       }
     },
     getWinnerId: function() {
@@ -103,8 +108,8 @@ export default{
           this.states[2][i]
         ];
         if(this.isStatesFilled(col)) {
-
-          return col[0][i];
+          // bug fix: col[0][i]をcol[0]へ。
+          return col[0];
         }
       }
 
@@ -113,8 +118,10 @@ export default{
         this.states[1][1],
         this.states[2][2]
       ];
+      console.log(skew1[0])
       if(this.isStatesFilled(skew1)) {
-        return skew1[0][0];
+        // bug fix: skew1[0][0]をskew1[0]へ。
+        return skew1[0];
       }
 
       let skew2 = [
@@ -123,7 +130,8 @@ export default{
         this.states[2][0]
       ];
       if(this.isStatesFilled(skew2)) {
-        return skew2[0][2];
+        // bug fix: skew2[0][0]をskew2[0]へ。
+        return skew2[0];
       }
 
       return -1;
@@ -169,7 +177,8 @@ export default{
     this.init();
   },
   updated: function(){
-    console.log(this.states)
+    // console.log(this.states)
+    // console.log(typeof(this.getWinnerId()))
   }
 };
 
