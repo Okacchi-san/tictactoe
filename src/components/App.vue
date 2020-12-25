@@ -8,7 +8,7 @@
     </MyModal>
     <MyModal @close="closeModal" v-else-if="isWinModal">
       <template slot="footer">
-        <p v-bind:class="[onSelect, getWinnerId]">{{ playerIds[this.getWinnerId()] }}さんの勝ちです。おめでとうございます。!</p>
+        <p v-bind:class="onSelect">{{ winner }}さんの勝ちです。おめでとうございます。!</p>
         <button @click="doClose">閉じる</button>
       </template>
     </MyModal>
@@ -73,7 +73,8 @@ export default{
         this.playerID = (this.playerID === 1) ? 2 : 1;
 
         let winnerId = this.getWinnerId();
-        
+        let winner = '';
+
         if(winnerId != -1) {
           
           this.playerIds = {
@@ -82,6 +83,8 @@ export default{
           };
             // this.init();
             this.isWinModal = true;
+            this.winner = this.playerIds[winnerId]
+            console.log(this.winner)
           // alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
         }else{
           if(this.isDraw()){ //isDraw === trueの場合以下がを実行する
