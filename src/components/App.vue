@@ -59,6 +59,7 @@ export default{
         [-1,-1,-1],
         [-1,-1,-1]
       ];
+      this.playerID = 1
     },
     onSelect: function(rowsIndex, colsIndex) {
       if(this.states[rowsIndex][colsIndex] != -1) {
@@ -88,7 +89,6 @@ export default{
             this.isDrawModal = true;
           }
         }
-        
       }
     },
     getWinnerId: function() {
