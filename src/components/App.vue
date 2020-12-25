@@ -47,8 +47,8 @@ export default{
     },
     closeModal() {
       this.isWinModal = false,
-      this.isDrawModal = false
-      
+      this.isDrawModal = false,
+      this.init();
     },
     doClose() {
       this.closeModal()
@@ -80,14 +80,11 @@ export default{
             1:'○',
             2:'×'
           };
-          // this.init();
+            // this.init();
             this.isWinModal = true;
-            // console.log(winnerId)
-            
           // alert(this.playerIds[winnerId] + 'さんの勝ちです。おめでとうございます。!');
         }else{
           if(this.isDraw()){ //isDraw === trueの場合以下がを実行する
-            // this.init();
             this.isDrawModal = true;
           }
         }
